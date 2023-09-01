@@ -2,6 +2,34 @@ import { useEffect, useState } from "react";
 import "./index.css";
 
 export const Clock = () => {
+  function getWindowDimensions() {
+    const { innerWidth: width, innerHeight: height } = window;
+    return {
+      width,
+      height,
+    };
+  }
+
+  function useWindowDimensions() {
+    const [windowDimensions, setWindowDimensions] = useState(
+      getWindowDimensions()
+    );
+
+    useEffect(() => {
+      function handleResize() {
+        setWindowDimensions(getWindowDimensions());
+      }
+
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+    return windowDimensions;
+  }
+
+  const { height, width } = useWindowDimensions();
+
+
   const [seconds, setSeconds] = useState("00");
   const [minutes, setMinutes] = useState("00");
   const [hours, setHours] = useState("00");
@@ -24,18 +52,20 @@ export const Clock = () => {
         width: "100%",
         height: "100%",
         backgroundColor: "#ffffff0F",
-        position: "absolute"
+        position: "absolute",
       }}
     >
-      <div style={{position:'relative',
-        top: '52.5%',
-        transform: 'translate(0%,-50%)  scale(0.4)',
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        backgroundColor: "#ffff001F",
-    
-    }}>
+      <div
+        style={{
+          position: "relative",
+          top: "calc(52.6%)",
+          transform: ` translate(0%,-50%) scale(${Math.max(height, width) / 3000}) `,
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          // backgroundColor: "#ffff001F",
+        }}
+      >
         <div
           className="time"
           id="time"
