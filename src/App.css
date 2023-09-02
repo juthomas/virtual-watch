@@ -1,0 +1,5 @@
+@font-face {
+  font-family: "digital";   /*Can be any text*/
+  src: local("digital-7.regular"),
+    url("./fonts/digital-7.regular.ttf") format("truetype");
+}

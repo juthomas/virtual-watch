@@ -29,11 +29,14 @@ export const Clock = () => {
 
   const { height, width } = useWindowDimensions();
 
+  const [millis, setMillis] = useState("000");
   const [seconds, setSeconds] = useState("00");
   const [minutes, setMinutes] = useState("00");
   const [hours, setHours] = useState("00");
 
+
   const pad = (val: number): string => (val < 10 ? `0${val}` : `${val}`);
+  const padMillis = (val: number): string => (val < 10 ? `00${val}` : val < 100 ? `0${val}` : `${val}`);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -46,6 +49,15 @@ export const Clock = () => {
     }, 1000);
     return () => clearInterval(interval);
   }, []);
+
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setMillis(padMillis(new Date().getMilliseconds()))
+    }, 1);
+    return () => clearInterval(interval);
+  }, []);
+
 
   return (
     <div
@@ -77,6 +89,7 @@ export const Clock = () => {
           data-minutes={minutes}
           data-seconds={seconds}
         >
+
           <div className="digit">
             <div className="line"></div>
             <div className="line"></div>
@@ -132,6 +145,9 @@ export const Clock = () => {
             <div className="line"></div>
             <div className="line"></div>
           </div>
+        <div className="millis" >
+        {millis}
+        </div>
         </div>
       </div>
     </div>
