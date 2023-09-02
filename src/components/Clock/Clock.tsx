@@ -29,7 +29,6 @@ export const Clock = () => {
 
   const { height, width } = useWindowDimensions();
 
-
   const [seconds, setSeconds] = useState("00");
   const [minutes, setMinutes] = useState("00");
   const [hours, setHours] = useState("00");
@@ -42,6 +41,9 @@ export const Clock = () => {
       setSeconds(pad(new Date().getSeconds()));
       setMinutes(pad(new Date().getMinutes()));
       setHours(pad(new Date().getHours()));
+      document.title = `${pad(new Date().getHours())}:${pad(
+        new Date().getMinutes()
+      )}:${pad(new Date().getSeconds())}`;
     }, 1000);
     return () => clearInterval(interval);
   }, []);
@@ -59,7 +61,9 @@ export const Clock = () => {
         style={{
           position: "relative",
           top: "calc(52.6%)",
-          transform: ` translate(0%,-50%) scale(${Math.max(height, width) / 3000}) `,
+          transform: ` translate(0%,-50%) scale(${
+            Math.max(height, width) / 3000
+          }) `,
           display: "flex",
           flexDirection: "row",
           justifyContent: "center",
