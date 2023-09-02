@@ -1,7 +1,7 @@
 
 
 :root {
-  background: url("/clock_background_void.png")no-repeat center center fixed; 
+  background: url("/clock_background_void.png")no-repeat center center fixed #010a13; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
