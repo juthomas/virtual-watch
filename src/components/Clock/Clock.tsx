@@ -34,9 +34,9 @@ export const Clock = () => {
   const [minutes, setMinutes] = useState("00");
   const [hours, setHours] = useState("00");
 
-
   const pad = (val: number): string => (val < 10 ? `0${val}` : `${val}`);
-  const padMillis = (val: number): string => (val < 10 ? `00${val}` : val < 100 ? `0${val}` : `${val}`);
+  const padMillis = (val: number): string =>
+    val < 10 ? `00${val}` : val < 100 ? `0${val}` : `${val}`;
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -50,14 +50,12 @@ export const Clock = () => {
     return () => clearInterval(interval);
   }, []);
 
-
   useEffect(() => {
     const interval = setInterval(() => {
-      setMillis(padMillis(new Date().getMilliseconds()))
+      setMillis(padMillis(new Date().getMilliseconds()));
     }, 1);
     return () => clearInterval(interval);
   }, []);
-
 
   return (
     <div
@@ -67,18 +65,19 @@ export const Clock = () => {
         position: "absolute",
       }}
     >
-      {/* si largeur > hauteur */}
       <div
         style={{
           position: "relative",
-          top: width < height ? "calc(52.6%)" : `calc(52.6% + ${(width - height) * 0.0255}px )`,
+          top:
+            width < height
+              ? "calc(52.6%)"
+              : `calc(52.6% + ${(width - height) * 0.0255}px )`,
           transform: ` translate(0%,-50%) scale(${
             Math.max(height, width) / 3000
           }) `,
           display: "flex",
           flexDirection: "row",
           justifyContent: "center",
-          // backgroundColor: "#ffff001F",
         }}
       >
         <div
@@ -88,7 +87,6 @@ export const Clock = () => {
           data-minutes={minutes}
           data-seconds={seconds}
         >
-
           <div className="digit">
             <div className="line"></div>
             <div className="line"></div>
@@ -144,9 +142,7 @@ export const Clock = () => {
             <div className="line"></div>
             <div className="line"></div>
           </div>
-        <div className="millis" >
-        {millis}
-        </div>
+          <div className="millis">{millis}</div>
         </div>
       </div>
     </div>
