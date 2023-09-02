@@ -37,7 +37,6 @@ export const Clock = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      console.log("This will run every second!");
       setSeconds(pad(new Date().getSeconds()));
       setMinutes(pad(new Date().getMinutes()));
       setHours(pad(new Date().getHours()));
