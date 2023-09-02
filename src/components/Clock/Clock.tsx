@@ -72,7 +72,7 @@ export const Clock = () => {
       <div
         style={{
           position: "relative",
-          top: width < height ? "calc(52.6%)" : `calc(52.6% + ${(width - height) * 0.02}px )`,
+          top: width < height ? "calc(52.6%)" : `calc(52.6% + ${(width - height) * 0.0255}px )`,
           transform: ` translate(0%,-50%) scale(${
             Math.max(height, width) / 3000
           }) `,
